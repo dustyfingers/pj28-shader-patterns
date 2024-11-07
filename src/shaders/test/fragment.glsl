@@ -106,8 +106,31 @@ void main()
     // float strength = random(gridUv);
 
     // pattern #25 - offset random noise (lo-def)
-    vec2 gridUv = vec2(floor(vUv.x * 10.0) / 10.0, floor(vUv.y * 10.0) / 10.0);
-    float strength = random(gridUv);
+    // vec2 gridUv = vec2(floor(vUv.x * 10.0) / 10.0, floor((vUv.y + vUv.x * 0.5) * 10.0) / 10.0);
+    // float strength = random(gridUv);
+
+    // pattern #26 - radial pattern from corner
+    // float strength = length(vUv);
+
+    // pattern #27 - radial pattern from center
+    // float strength = length(vUv - 0.5);
+    // or
+    // float strength = distance(vUv, vec2(0.5, 0.5));
+
+    // pattern #28 - white radial pattern from center
+    // float strength = 1.0 - distance(vUv, vec2(0.5, 0.5));
+
+    // pattern #29 - small white radial pattern from center
+    // float strength = 0.015 / distance(vUv, vec2(0.5));
+
+    // pattern #30 - stretched radial pattern from center
+    // vec2 lightUv = vec2(vUv.x * 0.1 + 0.45, vUv.y * 0.5 + 0.25);
+    // float strength = 0.015 / distance(lightUv, vec2(0.5));
+
+    // pattern #31 - diamond pattern from center
+    vec2 lightUv = vec2(vUv.x * 0.1 + 0.45, vUv.y * 0.5 + 0.25);
+    float strength = 0.015 / distance(lightUv, vec2(0.5));
+
 
     gl_FragColor = vec4(strength, strength, strength, 1.0);
 }
