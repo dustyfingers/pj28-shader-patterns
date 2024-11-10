@@ -184,8 +184,42 @@ void main()
     // float strength = 1.0 - step( 0.01, abs(distance(wavedUv, vec2(0.5)) - 0.25));
 
     // pattern #40 - angle shading
-    float strength = vUv.x;
+    // float angle = atan(vUv.x, vUv.y);
+    // float strength = angle;
 
+    // pattern #41 - half angle shading
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // float strength = angle;
+
+    // pattern #42
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // angle /= PI * 2.0;
+    // angle += 0.5;
+    // float strength = angle;
+
+    // pattern #43
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // angle /= PI * 2.0;
+    // angle += 0.5;
+    // angle *= 50.0;
+    // angle = mod(angle, 1.0);
+    // float strength = angle;
+
+    // pattern #44
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // angle /= PI * 2.0;
+    // angle += 0.5;
+    // float strength = sin(angle * 100.0);
+
+    // pattern #45
+    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    angle /= PI * 2.0;
+    angle += 0.5;
+    float sinusoid = sin(angle * 100.0);
+    float radius = 0.25 + sinusoid * 0.02;
+    float strength = 1.0 - step(0.01, abs(distance(vUv, vec2(0.5)) - radius));
+
+    // pattern #46
 
     gl_FragColor = vec4(strength, strength, strength, 1.0);
 }
